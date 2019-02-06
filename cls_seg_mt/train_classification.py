@@ -40,19 +40,20 @@ def plot_graphs(graph_dict, save_dict=True):
         f.close()
 
 parser = argparse.ArgumentParser()
+parser.add_argument('--input_path', type=str, default='data/train', help='path to input data')
 parser.add_argument('--batchSize', type=int, default=16, help='input batch size')
 parser.add_argument('--num_points', type=int, default=1000, help='number of points to resample')
 parser.add_argument('--min_points', type=int, default=0, help='smallest point cloud')
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=4)
 parser.add_argument('--nepoch', type=int, default=50, help='number of epochs to train for')
-parser.add_argument('--outf', type=str, default='cls_rn3d_v1',  help='output folder')
+parser.add_argument('--outf', type=str, default='models/cls',  help='output folder')
 parser.add_argument('--model', type=str, default = '',  help='model path')
 parser.add_argument('--lr_decay_rate', type=float, default = 0.05,  help='model path')
 
-model_dir = os.path.join('models', 'final_damage', 'cls')
 
 opt = parser.parse_args()
 print (opt)
+model_dir = opt.outf
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('using device: {}'.format(device))
@@ -64,7 +65,7 @@ print("Random Seed: ", opt.manualSeed)
 random.seed(opt.manualSeed)
 torch.manual_seed(opt.manualSeed)
 
-dataset = PartDataset(root = '/media/sarthak/HDD/TUM/courses/sem_5/ADLCV/data_final/roofn3d_data_damage_all/train',
+dataset = PartDataset(root = os.path.join(opt.input_path, 'train'),
                       task='classification',
                       npoints = opt.num_points,
                       min_pts=0,
@@ -75,7 +76,7 @@ dataloader = torch.utils.data.DataLoader(dataset,
                                          shuffle=True,
                                          num_workers=int(opt.workers))
 
-val_dataset = PartDataset(root = '/media/sarthak/HDD/TUM/courses/sem_5/ADLCV/data_final/roofn3d_data_damage_all/val',
+val_dataset = PartDataset(root = os.path.join(opt.input_path, 'val'),
                           task='classification',
                           mode = 'val',
                           npoints = opt.num_points,

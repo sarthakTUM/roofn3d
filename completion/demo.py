@@ -8,7 +8,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_path', default='demo_data/pyramid_roof.pcd')
     parser.add_argument('--model_type', default='pcn_cd')
-    parser.add_argument('--checkpoint', default='log/home_v10_cd/model-1850')
+    parser.add_argument('--checkpoint', default='log/model-1850')
     parser.add_argument('--num_gt_points', type=int, default=1000)
     args = parser.parse_args()
 

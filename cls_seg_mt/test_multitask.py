@@ -3,9 +3,11 @@ import argparse
 import torch.utils.data
 from datasets import PartDataset
 from pointnet import PointNetMultiTask
+import os
 
 parser = argparse.ArgumentParser()
 
+parser.add_argument('--input_path', type=str, default='data/test', help='path to input data')
 parser.add_argument('--model', type=str, default = '',  help='model path')
 parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=1)
@@ -14,9 +16,8 @@ parser.add_argument('--min_points', type=int, default=0, help='smallest point cl
 
 
 opt = parser.parse_args()
-print (opt)
 
-test_dataset = PartDataset(root='/media/sarthak/HDD/TUM/courses/sem_5/ADLCV/data_final/roofn3d_data_damage_all/test',
+test_dataset = PartDataset(root=os.path.join(opt.input_path, 'test'),
                            task='multi_task',
                            mode = 'test',
                            npoints = opt.num_points,
@@ -36,7 +37,6 @@ num_seg_classes = test_dataset.num_seg_classes
 
 classifier = PointNetMultiTask(cls_k=num_classes, seg_k=num_seg_classes).to(device)
 
-opt.model = '/media/sarthak/HDD/TUM/courses/sem_5/ADLCV/pointnet.pytorch/models/final_damage/mt/cls_model_22.pth'
 classifier.load_state_dict(torch.load(opt.model))
 classifier.eval()
 
@@ -69,7 +69,7 @@ for i, data in enumerate(test_dataset):
     total_points += target_seg.size(0)
 
     if i % n_log == 0:
-        print('{}:{}'.format(i, len(test_dataset)))
+        print('processing: {}/{}'.format(i, len(test_dataset)))
 
 
 test_cls_acc = float(total_cls_test_correct) / float(len(test_dataset))
