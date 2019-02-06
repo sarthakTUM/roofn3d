@@ -31,12 +31,12 @@ For example, `python demo.py --idx=15`. The `--idx` parameter can be a maximum o
 
 The models are cloned along with the repository. If there are any difficulties in cloning the models, please download the models
 from:
-1. https://drive.google.com/open?id=1hYBrNl2nficT_rFJkFUlXQYjR-2QvNQF for Classification, segmentation, and Multi-Task networks. Place the models in the `roofn3d/cls_seg_mt/models` directory.
+1. https://drive.google.com/open?id=1C8X4O9SnNmvmJbzpqx_2YJR7sYTxZ3Tm for Classification, segmentation, and Multi-Task networks. Place the models in the `roofn3d/cls_seg_mt/models` directory.
 2. https://drive.google.com/open?id=15r54fXLjZcFuL2ok35M1_hXxw_Fn7LJu for Completion. Place the model in `completion/log` directory. 
 
 ### Training
 #### Classification, Segmentation, and Multi-Task
-*Non-Damaged Data*: download the data from https://drive.google.com/open?id=1JRKiO8_SOjoz6lqUK819-9cpO0Ag2Yr1
+*Non-Damaged Data*: download the data from https://drive.google.com/open?id=1hYBrNl2nficT_rFJkFUlXQYjR-2QvNQF
 *Damaged data*: download the data from https://drive.google.com/open?id=1gNqYKxKP3CT_Fd8D_L6OWk545tAR4Oxl
 1. Unzip it into a folder.
   
