@@ -21,7 +21,7 @@ coordinate. We perform the following tasks:
 ## Usage
 ### Demo
 1. Clone the repository: `git clone https://github.com/sarthakTUM/roofn3d.git`
-2. Install the requirements: `pip install requirements.txt`. It is recommended to perform this step in a separate virtual environment.
+2. go to `cd roofn3d`. Install the requirements: `pip install -r requirements.txt`. It is recommended to perform this step in a separate virtual environment. If using Conda, then `conda create --name roofn3d`.
 3. For classification, segmentation, and multi-task demo: `cd cls_seg_mt`. 
 4. Run `python demo.py`. Different examples can be seen by changing the `--idx`parameter. 
 For example, `python demo.py --idx=15`. The `--idx` parameter can be a maximum of 23.
@@ -31,30 +31,33 @@ For example, `python demo.py --idx=15`. The `--idx` parameter can be a maximum o
 
 The models are cloned along with the repository. If there are any difficulties in cloning the models, please download the models
 from:
-1. https://drive.google.com/open?id=1C8X4O9SnNmvmJbzpqx_2YJR7sYTxZ3Tm for Classification, segmentation, and Multi-Task networks. Place the models in the `roofn3d/cls_seg_mt/models` directory.
+1. https://drive.google.com/open?id=1hYBrNl2nficT_rFJkFUlXQYjR-2QvNQF for Classification, segmentation, and Multi-Task networks. Place the models in the `roofn3d/cls_seg_mt/models` directory.
 2. https://drive.google.com/open?id=15r54fXLjZcFuL2ok35M1_hXxw_Fn7LJu for Completion. Place the model in `completion/log` directory. 
 
 ### Training
 #### Classification, Segmentation, and Multi-Task
-##### Non-Damaged data
-download the data from https://drive.google.com/open?id=1JRKiO8_SOjoz6lqUK819-9cpO0Ag2Yr1
-##### Damaged data
-download the data from <insert link here>
-1. Unzip it into a folder
+*Non-Damaged Data*: download the data from https://drive.google.com/open?id=1JRKiO8_SOjoz6lqUK819-9cpO0Ag2Yr1
+*Damaged data*: download the data from <insert link here>
+1. Unzip it into a folder.
+  
 2. go to `cd cls_seg_mt`. Run `python train_classification.py --input_path=path_to_data_from_step2 --outf=models/cls`.
-You must change the `--input-path`to path of data dobtained from step 2. The  `outf` argument corresponds to output drectory for the trained models.
+You must change the `--input-path`to path of data dobtained from step 2. The  `outf` argument corresponds to output drectory for the trained models. For example: `python train_classification.py  --input_path=data/roofn3d_data_multitask_all --outf=models/cls`.
+
 3. for segmentation, run `python train_segmentation.py --input_path=path_to_data_from_step2 --outf=models/seg`. 
-You must change the `--input-path`to path of data dobtained from step 2. The  `outf` argument corresponds to output drectory for the trained models.
+You must change the `--input-path`to path of data dobtained from step 2. The  `outf` argument corresponds to output drectory for the trained models. For example: `python train_segmentation.py  --input_path=data/roofn3d_data_multitask_all --outf=models/seg`.
+
 4. For Multi-Task Learning, run `python train_multitask.py --input_path=path_to_data_from_step2 --outf=models/mt`. 
-You must change the `--input-path`to path of data dobtained from step 2. The  `outf` argument corresponds to output drectory for the trained models.
+You must change the `--input-path`to path of data dobtained from step 2. The  `outf` argument corresponds to output drectory for the trained models. For example: `python train_multitask.py  --input_path=data/roofn3d_data_multitask_all --outf=models/mt`.
 
 **NOTE**: The first run might take some time to load all the point-clouds in the memory and save them for faster access in the next run.
 It is recommended to spare atleast 10GB of RAM for data loading.
 
 ### Testing
-1. go to `cd cls_seg_mt`, and run `python test_cls.py --input_path=path_to_data --model=model_to_test.pth`
-2. go to `cd cls_seg_mt`, and run `python test_seg.py --input_path=path_to_data --model=model_to_test.pth`
-3. go to `cd cls_seg_mt`, and run `python test_multitask.py --input_path=path_to_data --model=model_to_test.pth`
+1. go to `cd cls_seg_mt`, and run `python test_cls.py --input_path=path_to_data --model=model_to_test.pth`. For example: `python test_cls.py --input_path=data/roofn3d_data_multitask_all --model=models/classification_complete.pth`.
+
+2. go to `cd cls_seg_mt`, and run `python test_seg.py --input_path=path_to_data --model=model_to_test.pth`. For example: `python test_seg.py --input_path=data/roofn3d_data_multitask_all --model=models/segmentation_complete.pth`.
+
+3. go to `cd cls_seg_mt`, and run `python test_multitask.py --input_path=path_to_data --model=model_to_test.pth`. For example: `python test_multitask.py --input_path=data/roofn3d_data_multitask_all --model=models/multitask_complete.pth`.
 
 # Acknowledgement
 The RoofN3D training data (Wichmann et al., 2018) was provided by the chair Methods of Geoinformation Science of Technische Universität Berlin and is available at https://roofn3d.gis.tu-berlin.de.
