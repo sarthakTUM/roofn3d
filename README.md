@@ -37,7 +37,7 @@ from:
 ### Training
 #### Classification, Segmentation, and Multi-Task
 *Non-Damaged Data*: download the data from https://drive.google.com/open?id=1JRKiO8_SOjoz6lqUK819-9cpO0Ag2Yr1
-*Damaged data*: download the data from <insert link here>
+*Damaged data*: download the data from https://drive.google.com/open?id=1gNqYKxKP3CT_Fd8D_L6OWk545tAR4Oxl
 1. Unzip it into a folder.
   
 2. go to `cd cls_seg_mt`. Run `python train_classification.py --input_path=path_to_data_from_step2 --outf=models/cls`.
