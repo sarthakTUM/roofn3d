@@ -1,0 +1,3 @@
+Saddleback_roof	Saddleback_roof
+Two-sided_hip_roof	Two-sided_hip_roof
+Pyramid_roof	Pyramid_roof
