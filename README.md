@@ -1,5 +1,7 @@
 # Roof Classification, Segmentation, and Damage Completion using 3D Point Clouds
 
+![](/misc/img/poster.jpg)
+
 This repository contains the project for the course: https://dvl.in.tum.de/teaching/adl4cv-ws18/
 
 ## About
